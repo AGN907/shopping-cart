@@ -10,6 +10,7 @@ export async function productLoader({ params }) {
 
 export default function Product() {
   const [quantity, setQuantity] = useState(1);
+  const { handleProductAdded } = useOutletContext();
 
   const incrementQuantity = () => setQuantity(quantity + 1);
   const decrementQuantity = () => {
@@ -19,6 +20,13 @@ export default function Product() {
 
   const { product } = useLoaderData();
   const price = getPrice(product);
+
+  const pickedProduct = {
+    title: product.title,
+    image: product.featuredImage.url,
+    price: price,
+    quantity,
+  };
 
   return (
     <div className="mx-auto mt-10 p-8  md:flex md:max-w-5xl">
@@ -50,7 +58,10 @@ export default function Product() {
               +
             </button>
           </div>
-          <button className="mx-auto mt-auto flex w-full max-w-sm  justify-center gap-4 border border-gray-400 font-bold text-gray-50 outline-none transition-colors duration-300 hover:bg-gray-50 hover:text-black">
+          <button
+            onClick={() => handleProductAdded(pickedProduct)}
+            className="mx-auto mt-auto flex w-full max-w-sm  justify-center gap-4 border border-gray-400 font-bold text-gray-50 outline-none transition-colors duration-300 hover:bg-gray-50 hover:text-black"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="22"
