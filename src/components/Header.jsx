@@ -1,7 +1,61 @@
+import { useEffect, useState } from "react";
 import logo from "../assets/logo.svg";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+
+function MobileMenu({ active, handleMenuChange }) {
+  return (
+    <>
+      <div className="flex">
+        <input
+          onChange={() => handleMenuChange(!active)}
+          id="mobileMenu"
+          className="relative z-[1000] appearance-none"
+          type="checkbox"
+        />
+        <label className="cursor-pointer sm:hidden" htmlFor="mobileMenu">
+          {active ? (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="36"
+              height="36"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fill="currentColor"
+                d="m12 13.4l-4.9 4.9q-.275.275-.7.275t-.7-.275q-.275-.275-.275-.7t.275-.7l4.9-4.9l-4.9-4.9q-.275-.275-.275-.7t.275-.7q.275-.275.7-.275t.7.275l4.9 4.9l4.9-4.9q.275-.275.7-.275t.7.275q.275.275.275.7t-.275.7L13.4 12l4.9 4.9q.275.275.275.7t-.275.7q-.275.275-.7.275t-.7-.275L12 13.4Z"
+              ></path>
+            </svg>
+          ) : (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="36"
+              height="36"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fill="currentColor"
+                d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"
+              ></path>
+            </svg>
+          )}
+        </label>
+      </div>
+    </>
+  );
+}
 
 export default function Header({ cartLength }) {
+  const [isActive, setIsActive] = useState(false);
+  const pathName = useLocation();
+
+  function handleMenuChange(state) {
+    setIsActive(state);
+  }
+
+  useEffect(() => {
+    setIsActive(false);
+  }, [pathName]);
+
   return (
     <div className="bg-white">
       <div className="flex items-center p-4 shadow-sm shadow-slate-400">
@@ -39,8 +93,21 @@ export default function Header({ cartLength }) {
               </svg>
             </Link>
           </div>
+          <MobileMenu active={isActive} handleMenuChange={handleMenuChange} />
         </div>
       </div>
+      {isActive && (
+        <div className="border-b-2 bg-gray-100 sm:hidden">
+          <ul className="flex flex-col gap-4 p-8 text-lg">
+            <li className="">
+              <Link to="/">Home</Link>
+            </li>
+            <li className="">
+              <Link to="shop/products">Shop</Link>
+            </li>
+          </ul>
+        </div>
+      )}
     </div>
   );
 }
