@@ -4,6 +4,7 @@ import Shop, { shopLoader } from "../routes/Shop";
 import { productLoader } from "../routes/Product";
 import Product from "../routes/Product";
 import App from "../App";
+import Cart from "../routes/Cart";
 
 export default function Router() {
   const router = createBrowserRouter([
@@ -24,6 +25,10 @@ export default function Router() {
           path: "shop/products/:productId",
           element: <Product />,
           loader: productLoader,
+        },
+        {
+          path: "cart",
+          element: <Cart />,
         },
       ],
     },
