@@ -1,5 +1,4 @@
 import { useOutletContext, Link } from "react-router-dom";
-import ProductCard from "../components/ProductCard";
 import QuantityInput from "../components/QuantityInput";
 import CartImage from "../assets/shopping-cart.png";
 export default function Cart() {
@@ -57,7 +56,7 @@ export default function Cart() {
               className="relative flex w-full max-w-lg gap-4 border p-4 sm:min-w-[600px] "
               key={item.id}
             >
-              <div className="xs:w-24 w-32 ">
+              <div className="w-32 xs:w-24 ">
                 <img src={item.image} alt="" />
               </div>
               <div className="">
