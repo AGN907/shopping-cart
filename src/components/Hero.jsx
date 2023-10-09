@@ -1,15 +1,23 @@
+import { Link } from "react-router-dom";
 
 export default function Hero() {
-    return (
-        <div className="grid place-items-center bg-[url('/src/assets/hero.jpg')] bg-no-repeat bg-cover bg-center min-h-[30rem] h-[750px] ">
-            <div className='row-start-1 col-start-1 w-full h-full opacity-60 bg-[#2a323c99]'></div>
-            <div className="flex items-center justify-center max-w-3xl gap-4 row-start-1 col-start-1 opacity-100 text-[#a6adba] z-0 ">
-                <div className='flex flex-col items-center'>
-                    <h1 className='text-5xl text-white font-bold text-center leading-loose'>Explore the best electronics collection online!</h1>
-                
-                <button className='text-xl font-semibold px-10'>Shop</button>
-                </div>
-            </div>
+  return (
+    <div className="grid h-[100vh] min-h-[30rem] place-items-center bg-[url('/src/assets/hero.jpg')] bg-cover bg-center bg-no-repeat ">
+      <div className="col-start-1 row-start-1 h-full w-full bg-[#2a323c99] opacity-60"></div>
+      <div className="z-0 col-start-1 row-start-1 flex max-w-3xl items-center justify-center gap-4 text-[#a6adba] opacity-100 ">
+        <div className="flex flex-col items-center gap-4">
+          <h1 className="text-center text-3xl font-bold leading-loose text-white sm:text-4xl lg:text-5xl">
+            Explore the best clothes collection online!
+          </h1>
+
+          <Link
+            to="shop/products"
+            className="rounded-md bg-black px-10 py-2 text-xl font-semibold text-white hover:opacity-80"
+          >
+            Shop
+          </Link>
         </div>
-    )
+      </div>
+    </div>
+  );
 }
