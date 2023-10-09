@@ -1,7 +1,7 @@
 import { useLoaderData, useOutletContext } from "react-router-dom";
 import { getProducts } from "../api/products";
-import getPrice from "../utilties/getPrice";
 import { useState } from "react";
+import QuantityInput from "../components/QuantityInput";
 
 export async function productLoader({ params }) {
   const product = await getProducts(params.productId);
@@ -19,23 +19,23 @@ export default function Product() {
   };
 
   const { product } = useLoaderData();
-  const price = getPrice(product);
 
   const pickedProduct = {
+    id: product.id,
     title: product.title,
-    image: product.featuredImage.url,
-    price: price,
+    image: product.image,
+    price: product.price,
     quantity,
   };
 
   return (
     <div className="mx-auto mt-10 p-8  md:flex md:max-w-5xl">
       <div className="mx-auto w-60 sm:w-72 md:m-0 md:w-96">
-        <img className="w-full" src={product.featuredImage.url} alt="" />
+        <img className="w-full" src={product.image} alt="" />
       </div>
       <div className="ml-4 flex flex-col flex-wrap justify-between p-4 md:w-1/2">
         <p className="text-2xl sm:text-3xl md:text-4xl">{product.title}</p>
-        <p className="mt-2 text-2xl font-bold text-sky-700">${price}</p>
+        <p className="mt-2 text-2xl font-bold text-sky-700">${product.price}</p>
         <p className="p-4 text-lg ">{product.description}</p>
         <div className="flex items-center gap-4">
           <div className="flex items-center">
