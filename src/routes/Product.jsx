@@ -38,26 +38,11 @@ export default function Product() {
         <p className="mt-2 text-2xl font-bold text-sky-700">${product.price}</p>
         <p className="p-4 text-lg ">{product.description}</p>
         <div className="flex items-center gap-4">
-          <div className="flex items-center">
-            <button
-              onClick={decrementQuantity}
-              className=" h-8 w-8 rounded-none border border-gray-200 bg-white p-0 text-center text-2xl"
-            >
-              -
-            </button>
-            <input
-              className="input-number h-8 w-10 border bg-white text-center"
-              value={quantity}
-              type="number"
-              min={1}
-            />
-            <button
-              onClick={incrementQuantity}
-              className="h-8 w-8 rounded-none border border-gray-200 bg-white p-0 text-center text-2xl"
-            >
-              +
-            </button>
-          </div>
+          <QuantityInput
+            quantity={quantity}
+            decrementQuantity={decrementQuantity}
+            incrementQuantity={incrementQuantity}
+          />
           <button
             onClick={() => handleProductAdded(pickedProduct)}
             className="mx-auto mt-auto flex w-full max-w-sm  justify-center gap-4 border border-gray-400 font-bold text-gray-50 outline-none transition-colors duration-300 hover:bg-gray-50 hover:text-black"
