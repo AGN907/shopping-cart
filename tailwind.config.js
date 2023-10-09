@@ -11,6 +11,9 @@ export default {
       },
       gridTemplateRows: {
         'fluid': 'repeat(auto-fit, minmax(100px, 1fr))'
+      },
+      screens: {
+        'xs': '320px'
       }
     },
   },
